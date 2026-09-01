@@ -1,7 +1,17 @@
-# 忽略 Linux 编译生成的二进制程序和目标文件
-*.out
-*.o
-*.exe
+# 默认忽略所有文件
+*
 
-# 忽略 VS Code 自带的配置文件
-.vscode/
+# 允许目录
+!*/
+
+# 允许 C/C++ 源文件
+!*.c
+!*.h
+!*.cpp
+!*.hpp
+
+# 允许 Git 配置文件
+!.gitignore
+
+# 允许 README
+!README.md
