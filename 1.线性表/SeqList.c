@@ -2,15 +2,30 @@
 #include <stdlib.h>
 #define MAXSIZE 100
 typedef int ElemType;
+// typedef struct
+// {
+//     ElemType data[MAXSIZE];
+//     int length; // 当前数组元素的个数
+// } SeqList;
+
+// void initList(SeqList *L) // 初始化列表
+// {
+//     L->length = 0;
+// }
+
+// 动态分配内存
 typedef struct
 {
-    ElemType data[MAXSIZE];
+    ElemType *data;
     int length; // 当前数组元素的个数
 } SeqList;
 
-void initList(SeqList *L) // 初始化列表
+SeqList *initList() // 初始化列表
 {
+    SeqList *L = (SeqList *)malloc(sizeof(SeqList));
+    L->data = (ElemType *)malloc(sizeof(ElemType) * MAXSIZE);
     L->length = 0;
+    return L;
 }
 
 // 末尾增加元素
@@ -101,20 +116,19 @@ int FindElem(SeqList *L, ElemType e)
 int main()
 {
     // 声明一个顺序表并初始化
-    SeqList l;
-    initList(&l);
-    printf("初始化成功,目前长度为%d\n", l.length);
-    printf("目前占用字节数%zu字节\n", sizeof(l.data));
-    EndAdd(&l, 3);
-    EndAdd(&l, 6);
-    EndAdd(&l, 5);
-    EndAdd(&l, 4);
-    ListElem(&l);
-    InsertElem(&l, 2, 9);
-    ListElem(&l);
+    SeqList *l = initList();
+    printf("初始化成功,目前长度为%d\n", l->length);
+    printf("目前占用字节数%zu字节\n", sizeof(l->data));
+    EndAdd(l, 3);
+    EndAdd(l, 6);
+    EndAdd(l, 5);
+    EndAdd(l, 4);
+    ListElem(l);
+    InsertElem(l, 2, 9);
+    ListElem(l);
     ElemType deleteelem;
-    DeleteElem(&l, 2, &deleteelem);
-    ListElem(&l);
-    printf("%d\n", FindElem(&l, 5));
+    DeleteElem(l, 2, &deleteelem);
+    ListElem(l);
+    printf("%d\n", FindElem(l, 5));
     return 0;
 }
