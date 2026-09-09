@@ -60,6 +60,65 @@ Node *EndAdd(Node *l, Node *tail, ElemType e)
     return p;
 }
 
+// 删除节点
+int DeleteNode(Node *l, int pos)
+{
+    int i = 0;
+    Node *q = l;
+    while (i < pos - 1)
+    {
+        q = q->next;
+        i++;
+        if (q == NULL)
+        {
+            printf("pos error\n");
+            return 0;
+        }
+    }
+    if (q->next == NULL)
+    {
+        printf("pos error\n");
+        return 0;
+    }
+    Node *p = q->next;
+    q->next = p->next;
+    free(p);
+    return 0;
+}
+
+// 获取链表长度
+int ListLength(Node *l)
+{
+    Node *p = l;
+    int len = 0;
+    while (p->next != NULL)
+    {
+        p = p->next;
+        len++;
+    }
+    return len;
+}
+
+// 释放链表
+int FreeList(Node *l)
+{
+    Node *p = l->next;
+    if (p == NULL)
+    {
+        printf("ONLY HEAD\n");
+        return 0;
+    }
+    Node *q = p->next;
+    while (p->next != NULL)
+    {
+        free(p);
+        p = q;
+        q = p->next;
+    }
+    l->next = NULL;
+    return 0;
+}
+
 int main()
 {
     Node *l = initNode();
@@ -74,6 +133,12 @@ int main()
     tail = EndAdd(l, tail, 7);
     tail = EndAdd(l, tail, 8);
     tail = EndAdd(l, tail, 9);
+    ListNode(l);
+    DeleteNode(l, 4);
+    ListNode(l);
+    printf("%d\n", ListLength(l));
+    FreeList(l);
+    HeadAdd(l, 1);
     ListNode(l);
     return 0;
 }
