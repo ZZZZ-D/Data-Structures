@@ -119,6 +119,30 @@ int FreeList(Node *l)
     return 0;
 }
 
+// 快慢指针
+int FindNodeFS(Node *l, int k)
+{
+    scanf("%d", &k);
+    Node *fast = l;
+    Node *slow = l;
+    for (int i = 0; i < k; i++)
+    {
+        fast = fast->next;
+        if (fast == NULL)
+        {
+            printf("k error\n");
+            return 0;
+        }
+    }
+    while (fast != NULL)
+    {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    printf("倒数第%d的值为%d\n", k, slow->data);
+    return 1;
+}
+
 int main()
 {
     Node *l = initNode();
@@ -137,8 +161,9 @@ int main()
     DeleteNode(l, 4);
     ListNode(l);
     printf("%d\n", ListLength(l));
-    FreeList(l);
-    HeadAdd(l, 1);
-    ListNode(l);
+    // FreeList(l);
+    // HeadAdd(l, 1);
+    // ListNode(l);
+    FindNodeFS(l, 3);
     return 0;
 }
