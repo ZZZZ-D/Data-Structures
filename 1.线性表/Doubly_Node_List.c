@@ -63,6 +63,28 @@ void TailAdd(Node *L, ElemType e)
     tail->next = p;
 }
 
+// 指定位置插入
+int insertNode(Node *L, int pos, ElemType e)
+{
+    Node *p = L;
+    int i = 0;
+    while (i < pos - 1)
+    {
+        p = p->next;
+        i++;
+        if (p == NULL)
+        {
+            return 0;
+        }
+    }
+    Node *q = (Node *)malloc(sizeof(Node));
+    q->data = e;
+    p->next->prev = q;
+    q->next = p->next;
+    p->next = q;
+    q->prev = p;
+    return 1;
+}
 int main()
 {
     Node *L = InitList();
@@ -71,6 +93,8 @@ int main()
     HeadAdd(L, 3);
     HeadAdd(L, 4);
     TailAdd(L, 5);
+    insertNode(L, 1, 6);
+    insertNode(L, 2, 7);
     NodeList(L);
     return 0;
 }
