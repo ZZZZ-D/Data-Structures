@@ -85,6 +85,26 @@ int insertNode(Node *L, int pos, ElemType e)
     q->prev = p;
     return 1;
 }
+
+// 删除节点
+int DeleteNode(Node *L, int pos)
+{
+    Node *p = L;
+    for (int i = 0; i < pos - 1; i++)
+    {
+        p = p->next;
+    }
+    if (p == NULL)
+    {
+        return 0;
+    }
+    Node *q = p->next;
+    p->next = q->next;
+    q->next->prev = p;
+    free(q);
+    return 1;
+}
+
 int main()
 {
     Node *L = InitList();
@@ -95,6 +115,7 @@ int main()
     TailAdd(L, 5);
     insertNode(L, 1, 6);
     insertNode(L, 2, 7);
+    DeleteNode(L, 1);
     NodeList(L);
     return 0;
 }
