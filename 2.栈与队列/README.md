@@ -8,4 +8,5 @@
 - 后进先出
 - 进栈（push），出栈（pop）
 2. 实现
-- 代码实现在`Stack.c`文件
+- 有顺序结构和链式结构
+- 代码实现在`Stack(list).c`和`Stack(node).c`文件
