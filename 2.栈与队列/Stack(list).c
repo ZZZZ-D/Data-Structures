@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define MAXSIZE 100
 typedef int ElemType;
 // 顺式结构
