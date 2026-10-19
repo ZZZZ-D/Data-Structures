@@ -71,3 +71,15 @@ int dequeue(Queue *q, ElemType *e)
     free(p);
     return 1;
 }
+
+// 获取队头元素
+int GetFront(Queue *q, ElemType *e)
+{
+    if (q->front == q->rear)
+    {
+        printf("空的\n");
+        return 0;
+    }
+    *e = q->front->next->data;
+    return 1;
+}
