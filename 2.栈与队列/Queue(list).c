@@ -56,7 +56,7 @@ int dequeue(Queue *q, Elemtype *e)
         return 0;
     }
     *e = q->data[q->front];
-    q->front++;
+    q->front++; // q->front = (q->front+1)%MAXSIZE;
     return 1;
 }
 
@@ -90,8 +90,14 @@ int equeue(Queue *q, Elemtype e)
             return 0;
         }
     }
+    // 循环队列-入队
+    // if((q->rear + 1) % MAXSIZE = q -> front)
+    //{
+    // printf("满了\n");
+    // return 0；
+    // }
     q->data[q->rear] = e;
-    q->rear++;
+    q->rear++; // q->rear = (q->rear + 1) % MAXSIZE;
     return 1;
 }
 
