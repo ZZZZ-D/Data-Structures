@@ -8,6 +8,7 @@
 - 内容的值从0开始
 ## 后缀表达式的实现
 - 后缀表达式计算实现在文件`suffix.c`
+- 中缀表达式转后缀表达式实现在文件`transform.c`
 ## 补充
 1. fgets用法
 - fgets(&expr,sizeof(expr),stdbin)
